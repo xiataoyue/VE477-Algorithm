@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"/>
+				<Option working_dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"/>
+				<Option working_dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="VE477_lab1">
-				<Option output="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/VE477_lab1" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"/>
+				<Option output="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/VE477_lab1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -40,15 +40,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 VE477_lab1"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 VE477_lab1"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="VE477_lab1/fast">
-				<Option output="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/VE477_lab1" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"/>
+				<Option output="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/VE477_lab1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -59,15 +59,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 VE477_lab1/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 VE477_lab1/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Dict">
-				<Option output="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/Dict" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"/>
+				<Option output="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/Dict" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -78,15 +78,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Dict"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Dict"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Dict/fast">
-				<Option output="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/Dict" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"/>
+				<Option output="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/Dict" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -97,15 +97,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Dict/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Dict/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Hash">
-				<Option output="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/Hash" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"/>
+				<Option output="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/Hash" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -116,15 +116,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Hash"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Hash"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Hash/fast">
-				<Option output="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/Hash" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"/>
+				<Option output="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/Hash" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -135,42 +135,45 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Hash/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Hash/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"/>
+				<Option working_dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/xiataoyue/Desktop/VE477/labs/VE477\ lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/xiataoyue/Desktop/VE477 lab1/dictTest.c">
+		<Unit filename="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictTest.c">
 			<Option target="Dict"/>
 		</Unit>
-		<Unit filename="/home/xiataoyue/Desktop/VE477 lab1/dictionary.c">
+		<Unit filename="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictionary.c">
 			<Option target="Dict"/>
 		</Unit>
-		<Unit filename="/home/xiataoyue/Desktop/VE477 lab1/dictionary.h">
+		<Unit filename="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictionary.h">
 			<Option target="Dict"/>
 		</Unit>
-		<Unit filename="/home/xiataoyue/Desktop/VE477 lab1/hash.c">
+		<Unit filename="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/hash.c">
 			<Option target="Hash"/>
 		</Unit>
-		<Unit filename="/home/xiataoyue/Desktop/VE477 lab1/hash.h">
+		<Unit filename="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/hash.h">
 			<Option target="Hash"/>
 		</Unit>
-		<Unit filename="/home/xiataoyue/Desktop/VE477 lab1/main.c">
+		<Unit filename="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/hashTest.c">
+			<Option target="Hash"/>
+		</Unit>
+		<Unit filename="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/main.c">
 			<Option target="VE477_lab1"/>
 		</Unit>
-		<Unit filename="/home/xiataoyue/Desktop/VE477 lab1/CMakeLists.txt">
+		<Unit filename="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

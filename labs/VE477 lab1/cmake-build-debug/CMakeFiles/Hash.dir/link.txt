@@ -1,1 +1,1 @@
-/usr/bin/cc -g CMakeFiles/Hash.dir/hash.c.o -o Hash 
+/usr/bin/cc -g CMakeFiles/Hash.dir/hash.c.o CMakeFiles/Hash.dir/hashTest.c.o -o Hash 

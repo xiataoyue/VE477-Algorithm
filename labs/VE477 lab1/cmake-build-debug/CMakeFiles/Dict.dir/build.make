@@ -62,10 +62,10 @@ RM = /home/xiataoyue/Desktop/Jetbrains/apps/CLion/ch-0/211.7442.42/bin/cmake/lin
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/xiataoyue/Desktop/VE477 lab1"
+CMAKE_SOURCE_DIR = "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"
+CMAKE_BINARY_DIR = "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Dict.dir/depend.make
@@ -78,29 +78,29 @@ include CMakeFiles/Dict.dir/flags.make
 
 CMakeFiles/Dict.dir/dictionary.c.o: CMakeFiles/Dict.dir/flags.make
 CMakeFiles/Dict.dir/dictionary.c.o: ../dictionary.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Dict.dir/dictionary.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Dict.dir/dictionary.c.o -c "/home/xiataoyue/Desktop/VE477 lab1/dictionary.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Dict.dir/dictionary.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Dict.dir/dictionary.c.o -c "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictionary.c"
 
 CMakeFiles/Dict.dir/dictionary.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Dict.dir/dictionary.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/xiataoyue/Desktop/VE477 lab1/dictionary.c" > CMakeFiles/Dict.dir/dictionary.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictionary.c" > CMakeFiles/Dict.dir/dictionary.c.i
 
 CMakeFiles/Dict.dir/dictionary.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Dict.dir/dictionary.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/xiataoyue/Desktop/VE477 lab1/dictionary.c" -o CMakeFiles/Dict.dir/dictionary.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictionary.c" -o CMakeFiles/Dict.dir/dictionary.c.s
 
 CMakeFiles/Dict.dir/dictTest.c.o: CMakeFiles/Dict.dir/flags.make
 CMakeFiles/Dict.dir/dictTest.c.o: ../dictTest.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Dict.dir/dictTest.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Dict.dir/dictTest.c.o -c "/home/xiataoyue/Desktop/VE477 lab1/dictTest.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Dict.dir/dictTest.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Dict.dir/dictTest.c.o -c "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictTest.c"
 
 CMakeFiles/Dict.dir/dictTest.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Dict.dir/dictTest.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/xiataoyue/Desktop/VE477 lab1/dictTest.c" > CMakeFiles/Dict.dir/dictTest.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictTest.c" > CMakeFiles/Dict.dir/dictTest.c.i
 
 CMakeFiles/Dict.dir/dictTest.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Dict.dir/dictTest.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/xiataoyue/Desktop/VE477 lab1/dictTest.c" -o CMakeFiles/Dict.dir/dictTest.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictTest.c" -o CMakeFiles/Dict.dir/dictTest.c.s
 
 # Object files for target Dict
 Dict_OBJECTS = \
@@ -114,7 +114,7 @@ Dict: CMakeFiles/Dict.dir/dictionary.c.o
 Dict: CMakeFiles/Dict.dir/dictTest.c.o
 Dict: CMakeFiles/Dict.dir/build.make
 Dict: CMakeFiles/Dict.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable Dict"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable Dict"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Dict.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -127,6 +127,6 @@ CMakeFiles/Dict.dir/clean:
 .PHONY : CMakeFiles/Dict.dir/clean
 
 CMakeFiles/Dict.dir/depend:
-	cd "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/xiataoyue/Desktop/VE477 lab1" "/home/xiataoyue/Desktop/VE477 lab1" "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug" "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug" "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/CMakeFiles/Dict.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1" "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1" "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug" "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug" "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/CMakeFiles/Dict.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/Dict.dir/depend
 

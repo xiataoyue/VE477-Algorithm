@@ -4,7 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/xiataoyue/Desktop/VE477 lab1/hash.c" "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/CMakeFiles/Hash.dir/hash.c.o"
+  "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/hash.c" "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/CMakeFiles/Hash.dir/hash.c.o"
+  "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/hashTest.c" "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/CMakeFiles/Hash.dir/hashTest.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

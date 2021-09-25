@@ -67,10 +67,10 @@ RM = /home/xiataoyue/Desktop/Jetbrains/apps/CLion/ch-0/211.7442.42/bin/cmake/lin
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/xiataoyue/Desktop/VE477 lab1"
+CMAKE_SOURCE_DIR = "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug"
+CMAKE_BINARY_DIR = "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/CMakeFiles" "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/CMakeFiles" "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -249,6 +249,33 @@ hash.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hash.dir/build.make CMakeFiles/Hash.dir/hash.c.s
 .PHONY : hash.c.s
 
+hashTest.o: hashTest.c.o
+
+.PHONY : hashTest.o
+
+# target to build an object file
+hashTest.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hash.dir/build.make CMakeFiles/Hash.dir/hashTest.c.o
+.PHONY : hashTest.c.o
+
+hashTest.i: hashTest.c.i
+
+.PHONY : hashTest.i
+
+# target to preprocess a source file
+hashTest.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hash.dir/build.make CMakeFiles/Hash.dir/hashTest.c.i
+.PHONY : hashTest.c.i
+
+hashTest.s: hashTest.c.s
+
+.PHONY : hashTest.s
+
+# target to generate assembly for a file
+hashTest.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hash.dir/build.make CMakeFiles/Hash.dir/hashTest.c.s
+.PHONY : hashTest.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -296,6 +323,9 @@ help:
 	@echo "... hash.o"
 	@echo "... hash.i"
 	@echo "... hash.s"
+	@echo "... hashTest.o"
+	@echo "... hashTest.i"
+	@echo "... hashTest.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

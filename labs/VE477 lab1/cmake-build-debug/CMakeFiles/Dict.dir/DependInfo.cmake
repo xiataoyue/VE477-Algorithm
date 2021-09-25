@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/xiataoyue/Desktop/VE477 lab1/dictTest.c" "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/CMakeFiles/Dict.dir/dictTest.c.o"
-  "/home/xiataoyue/Desktop/VE477 lab1/dictionary.c" "/home/xiataoyue/Desktop/VE477 lab1/cmake-build-debug/CMakeFiles/Dict.dir/dictionary.c.o"
+  "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictTest.c" "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/CMakeFiles/Dict.dir/dictTest.c.o"
+  "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictionary.c" "/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/cmake-build-debug/CMakeFiles/Dict.dir/dictionary.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
