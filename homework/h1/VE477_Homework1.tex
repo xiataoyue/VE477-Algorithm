@@ -1,0 +1,223 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{blkarray}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[linesnumbered, ruled]{algorithm2e}
+
+\geometry{left = 2.0cm, right = 2.0cm}
+
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwProg{Fn}{Function}{:}{end}
+\SetKwFunction{findCircle}{findCircle}
+\SetKwFunction{updateMST}{updateMST}
+\SetKwFunction{mult}{mult}
+
+\title{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=7cm, height=5cm]{AAA.png}
+    \end{figure}
+    VE477 Introduction to Algorithms\\ 
+    Homework 7}
+\author{Taoyue Xia, 518370910087}
+\date{2021/09/23}
+
+\begin{document}
+\maketitle
+
+\newpage
+\section*{Ex1 --- Hash tables}
+\begin{enumerate}
+    \item First we know that the combination of choosing $k$ keys from total $n$ keys is $\begin{pmatrix}
+        n \\ k
+    \end{pmatrix}$. Also, we know that the probability of a key falling into any slot is equal, 
+    so that the probability of choosing one slot for $k$ keys is $(\frac{1}{n})^k$. Moreover, 
+    since it follows a binomial distribution, 
+    we should take the probability of other keys not falling into the specific slot into account, 
+    which is $(1 - \frac{1}{n})^{n - k}$. Finally, we can combine them together, 
+    and finally get the probability $P_k$ that exactly $k$ keys hashed into a same slot is:
+    $$P_k = (\frac{1}{n})^k (1 - \frac{1}{n})^{n - k} \begin{pmatrix} n\\ k \end{pmatrix}$$
+
+    \item We know that each slot will have an equal probability of having $k$ keys, 
+          so that the probability of one slot having $k$ keys is $nP_k$. 
+          Since $P_k^\prime$ denotes for the probability of the slot with most keys having $k$ keys, 
+          which have some extra restrictions on the former case. 
+          Therefore, $P_k^\prime \leq nP_k$.
+    
+    \item We have Stirling Formula as $n! = \sqrt{2\pi n}(\frac{n}{e})^n$. Thus we will have: 
+          \begin{align*}
+              P_k &= (\frac{1}{n})^k (1 - \frac{1}{n})^{n - k} \begin{pmatrix} n\\ k \end{pmatrix}\\
+                  &= (\frac{1}{n})^k (1 - \frac{1}{n})^{n - k} \frac{n!}{(n-k)!k!}\\
+                  &\approx (\frac{1}{n})^k (1 - \frac{1}{n})^{n - k} \frac{\sqrt{2\pi n}(\frac{n}{e})^n}{\sqrt{2\pi (n-k)}(\frac{n-k}{e})^{n-k} k!}\\
+                  &= \frac{(n-1)^{n-k}}{n^n} \frac{\sqrt{2\pi n}(\frac{n}{e})^n}{\sqrt{2\pi (n-k)}(\frac{n-k}{e})^{n-k} k!}\\
+                  &= (n-1)^{n-k} \frac{\sqrt{2\pi n}}{\sqrt{2\pi (n-k)} (n-k)^{n-k} e^k k!}\\
+                  &\approx (\frac{n-1}{n-k})^{n-k}\cdot \sqrt{\frac{n}{2\pi k(n-k)}}\cdot \frac{1}{k^k}\\
+                  &< (1 + \frac{k-1}{n-k})^{n-k} \frac{1}{k^k}\\
+                  &< \frac{e^k}{k^k}, \text{using the squeeze theorem}
+          \end{align*}
+          Proof done.
+    
+    \item From problem 3, we can simply take the logarithm of both sides and get:
+          $$\log P_k < k - k\log k$$
+          Since $k - k\log k$ is strict decreasing when $k$ is increasing, and $k \geq \frac{c\log n}{\log \log n}$, 
+          so we can take the least value of $k$ into account, along with $c > 1$, which gives us: 
+          \begin{align*}
+              \log P_k &< \frac{c\log n}{\log \log n} - \frac{c\log n}{\log \log n} \log (\frac{c\log n}{\log \log n})\\
+                       &= \frac{c\log n}{\log \log n} - \frac{c\log n}{\log \log n}(\log c + \log \log n - \log \log \log n)\\
+                       &< c\log n[\frac{1}{\log \log n} (1 - \log \log n + \log \log \log n) ]
+          \end{align*}
+          Set $t = \log \log n$, we can have $\log P_k < c \log n \frac{1 + \log t - t}{t}$, 
+          now we can take the derivative of $\frac{1 + \log t - t}{t}$. Which is: 
+          $$\frac{d(\frac{1 + \log t - t}{t})}{dt} = \frac{t(\frac{1}{t} - 1) - 1 - \log t + t}{t^2} < 0$$
+          When $t > 1$, which is $n > e^2$, thus we can find that: 
+          $$-1 < \frac{1}{\log \log n} (1 - \log \log n + \log \log \log n) < 0$$
+          $$\log P_k < -c\log n \quad \Rightarrow \quad P_k < \frac{1}{n^c}$$
+          Since we have proved in problem 2 that $P_k^\prime \leq nP_k$, therefore, 
+          $$P_k^\prime < \frac{n}{n^c} = \frac{1}{n^{c-1}}$$
+          Finally, we can find that with $c = 3$, $P_k^\prime < 1/n^2$, proof done.
+
+    \item By defining $k$ as $\lfloor \frac{c\log n}{\log \log n} \rfloor$ We can calculate $E(M)$ as: 
+          \begin{align*}
+            E(M) &= \sum_{i=1}^n i\cdot Pr(M = i)\\
+                 &= \sum_{i=1}^{k} i\cdot Pr(M = i) + \sum_{i=k+1}^n i\cdot Pr(M = i)\\
+                 &\leq \frac{c\log n}{\log \log n}\sum_{i=1}^k Pr(M = i) + n\sum_{i=k+1}^n Pr(M = i)\\
+                 &= \frac{c\log n}{\log \log n} Pr(M \leq \frac{c\log n}{\log \log n}) + n Pr(M > \frac{c\log n}{\log \log n})
+          \end{align*}
+          According to the previous problem, when $k \geq \frac{c\log n}{\log \log n}$, 
+          the probability of $P_k$ is less than $1/n^{c-1}$, so we can conclude that: 
+          $$E(M) \leq \frac{c\log n}{\log \log n} \cdot 1 + n \cdot \frac{1}{n^{c-1}}$$
+          Therefore, $E(M) = \mathcal{O}(\frac{c\log n}{\log \log n})$. Proof done.
+
+\end{enumerate}
+
+\section*{Ex2 --- Minimum spanning tree}
+\begin{algorithm}[H]
+    \caption{Update MST}
+    \Input{$G = \langle V, E \rangle$ an undirected graph, $T$ the original MST, $e = \langle v, w \rangle$ the edge whose weight decreased}
+    \Output{$T^\prime$ the updated MST}
+
+    \Fn{\findCircle{T, v}} {
+        Array $\leftarrow$ []\;
+        origin $\leftarrow$ v\;
+        q $\leftarrow$ queue\;
+        push v into q\;
+
+        \While{q is not empty}{
+            cur $\leftarrow$ q.pop()\;
+            cur.state $\leftarrow$ visited\;
+            \If{the successor of cur contains origin and the predecessor is not origin}{
+                push all the nodes on the path of origin to cur to Array\;
+                \KwRet{Array}\;
+            }
+            push all the adjacent nodes of cur into q\;
+        }
+        \KwRet{Array}\;
+    }
+
+    \Fn{\updateMST{G, T, e}} {
+        $T^\prime$ $\leftarrow$ T + \{e\}\;
+        Nodes $\leftarrow$ \findCircle{$T^\prime$, v}\;
+        Max $\leftarrow$ the edge of the highest weight in Nodes\;
+        $T^\prime$ $\leftarrow$ $T^\prime$ - \{Max\}\;
+        \KwRet{$T^\prime$}
+    }
+
+\end{algorithm}
+
+\section*{Ex3 --- Simple Algorithms}
+\begin{enumerate}
+    \item Take the number as if it is defined in decimal bits (since in binary bits it is too easy), 
+          the pseudocode is shown below:
+          \begin{algorithm}[h!]
+              \caption{n-bits Integers Addition}
+              \Input{Two arrays $a$ and $b$ of two n-bits integers}
+              \Output{An array of an n+1-bit integer}
+              \tcc{Assume that the bits with low significance is of small index.}
+              $A$ $\leftarrow$ an n+1-bit array\;
+              carry $\leftarrow$ 0\;
+              i $\leftarrow$ 0\;
+              
+              \For{$i$ $\leftarrow$ 0 \KwTo $n-1$}{
+                  sum $\leftarrow$ $a[i] + b[i] + carry$\;
+                  $A[i]$ $\leftarrow$ sum $\mod$ 10\;
+                  carry $\leftarrow$ $\text{sum} / 10$\;
+              }
+              \If{carry equals 1}{
+                $A[n]$ $\leftarrow$ carry\;
+              }
+              \KwRet{A}\;
+
+          \end{algorithm}
+    
+    \item \begin{enumerate}[a)]
+        \item The pseudocode is shown below:
+              \begin{algorithm}[]
+                  \caption{Multiplication by addition}
+                  \Input{two integers $x$ and $y$}
+                  \Output{The multiplication of $x$ and $y$}
+
+                  \Fn{\mult{$x$, $y$}}{
+                    \eIf{$x = 0$ or $y = 0$}{
+                        \KwRet{0}\;
+                    }{
+                        \KwRet{$x\cdot (y\ \mod\ 2) +$ \mult{$2x$, $\lfloor y/2 \rfloor$}}
+                    }
+                  }
+                  
+              \end{algorithm}
+              \newpage
+        \item First we can show the whole process by the following formula: 
+              \begin{align*}
+                  x\cdot y &= x\cdot (y\bmod 2) + 2x\cdot (\lfloor y/2 \rfloor \bmod 2) + \dots + 2^nx\cdot (\lfloor y/2^n \rfloor \bmod 2) + 0\\
+                           &= x\cdot ((y \% 2) + 2(\lfloor y/2 \rfloor \% 2) + \dots + 2^n(\lfloor y/2^n \rfloor \% 2))
+              \end{align*}
+              By converting this expression into binary bits representation, it is very easy to understand. 
+              First, by calculating $y\bmod 2$, we can get the least significant bit of $y$, and multiply it by $x$. 
+              Then, calculating $\lfloor y/2 \rfloor$ means right move $y$ for one bit. 
+              Then we get the second bit of $y$ by calculating $\lfloor y/2 \rfloor \% 2$. 
+              To preserve the correctness, $x$ is multiplied by 2 to meet the requirement of multiplying with $y$'s second bit. 
+              Using the previous procedure, We can calculate until the last bit of $y$ is reached. 
+              Therefore, the correctness of this algorithm is proved.
+    \end{enumerate}
+\end{enumerate}
+
+\section*{Ex4 --- Critical thinking}
+\begin{enumerate}
+    \item I think both algorithms can solve the Knapsack problem, with different usage conditions. 
+          But it is optimal to choose the largest item first, 
+          so that we need fewer moves to get the correct answer, or raise an error, which saves time.
+    
+    \item If we choose $m = 2^n$, then $H(K) = K \bmod m$, it's hashed value will be the least significant n bits of $K$. 
+          If two numbers has the same n least significant bits, it is true that they will create the same hash, 
+          which introduce a lot of collision. By introducing a prime which is not close ot power of 2, 
+          it will create a lot of divergence in the process of hashing, thus making collisions less probable.
+    
+    \item Using the knapsack problem in problem 1. Suppose that we have a set of numbers $S = \{1, 5, 7, 9\}$, 
+          and the sum $n = 12$. With using the greedy algorithm, it will choose from the largest element smaller than the sum, 
+          which will give the locally optimal solution $\{9,1,1,1\}$.\\
+          However, the globally optimal solution is $\{5, 7\}$. 
+    
+    \item If we can determine each horse's racing time in a race, then we just need 5 races to find the fastest three horses, 
+          because all the 25 horses' racing time is recorded and obviously observed.
+
+          However, if we cannot know the exact time of racing of each horse, but only knowing the relative speed of each horse, 
+          we will need 7 races to determine the three fastest horses.
+
+          Firstly, we need 5 races to test all the 25 horses, namely group $A, B, C, D, E$. 
+          Then, we can take the 5 fastest horses $A_1, B_1, C_1, D_1, E_1$in each race to compete in the 6-th race. 
+          The fastest will be the fastest horse in all the 25 horses, suppose it is $A_1$. 
+          Then the second fastest horse will be chosen between $A_2$, the second fastest horse in group $A$ and $B_1$. 
+          The third fastest horse will be chosen between $A_3$, $B_2$ and $C_1$. 
+          Then take the five horses $A_2$, $B_1$, $A_3$, $B_2$ and $C_1$ to compete in race 7. 
+          Finally, the two fastest horses in race 7 will be the second and third fastest horses in the total 25 horses.
+
+\end{enumerate}
+
+
+\end{document}
