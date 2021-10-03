@@ -1,0 +1,3 @@
+F:\JetBrains\apps\CLion\ch-0\212.5284.51\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\Dict.dir/objects.a
+F:\MinGW\bin\ar.exe cr CMakeFiles\Dict.dir/objects.a @CMakeFiles\Dict.dir\objects1.rsp
+F:\MinGW\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\Dict.dir/objects.a -Wl,--no-whole-archive -o Dict.exe -Wl,--out-implib,libDict.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Dict.dir\linklibs.rsp

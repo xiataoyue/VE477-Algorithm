@@ -1,0 +1,5 @@
+C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/CMakeFiles/Hash.dir
+C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/CMakeFiles/Dict.dir
+C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/CMakeFiles/VE477_lab1.dir
+C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/CMakeFiles/rebuild_cache.dir

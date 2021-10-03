@@ -1,1 +1,0 @@
-/usr/bin/cc -g CMakeFiles/Dict.dir/dictionary.c.o CMakeFiles/Dict.dir/dictTest.c.o -o Dict 

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="VE477_lab1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Hash">
+				<Option output="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Hash.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="F:/MinGW/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include-fixed"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 Hash"/>
+					<CompileFile command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Hash/fast">
+				<Option output="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Hash.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="F:/MinGW/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include-fixed"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 Hash/fast"/>
+					<CompileFile command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Dict">
+				<Option output="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Dict.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="F:/MinGW/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include-fixed"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 Dict"/>
+					<CompileFile command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Dict/fast">
+				<Option output="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Dict.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="F:/MinGW/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include-fixed"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 Dict/fast"/>
+					<CompileFile command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="VE477_lab1">
+				<Option output="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/VE477_lab1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="F:/MinGW/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include-fixed"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 VE477_lab1"/>
+					<CompileFile command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="VE477_lab1/fast">
+				<Option output="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/VE477_lab1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="F:/MinGW/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/include-fixed"/>
+					<Add directory="f:\mingw\bin\../lib64/gcc/x86_64-w64-mingw32/4.8.3/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 VE477_lab1/fast"/>
+					<CompileFile command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="F:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/dictTest.c">
+			<Option target="Dict"/>
+		</Unit>
+		<Unit filename="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/dictionary.c">
+			<Option target="Dict"/>
+		</Unit>
+		<Unit filename="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/dictionary.h">
+			<Option target="Dict"/>
+		</Unit>
+		<Unit filename="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/hash.c">
+			<Option target="Hash"/>
+		</Unit>
+		<Unit filename="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/hash.h">
+			<Option target="Hash"/>
+		</Unit>
+		<Unit filename="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/hashTest.c">
+			<Option target="Hash"/>
+		</Unit>
+		<Unit filename="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/main.c">
+			<Option target="VE477_lab1"/>
+		</Unit>
+		<Unit filename="C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,10 @@
+F:\JetBrains\apps\CLion\ch-0\212.5284.51\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" "C:\Users\JamesXia\Desktop\VE477 Algorithm\labs\VE477 lab1 programming"
+-- The C compiler identification is GNU 4.8.3
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: F:/MinGW/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/JamesXia/Desktop/VE477 Algorithm/labs/VE477 lab1 programming/cmake-build-debug
