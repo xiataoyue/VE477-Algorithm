@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictTest.c
+stdio.h
+-
+string.h
+-
+dictionary.h
+/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictionary.h
+
+/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictionary.c
+dictionary.h
+/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictionary.h
+stdlib.h
+-
+
+/home/xiataoyue/Desktop/VE477/labs/VE477 lab1/dictionary.h
+
