@@ -5,3 +5,4 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(lab2 main.c)
 add_executable(kruskal kruskal.c)
+add_executable(prim prim.c)

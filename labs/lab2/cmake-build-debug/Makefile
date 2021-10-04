@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /home/xiataoyue/Desktop/VE477/labs/lab2/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/xiataoyue/Jetbrains/apps/CLion/ch-0/212.5284.51/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -84,6 +74,16 @@ rebuild_cache:
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/home/xiataoyue/Jetbrains/apps/CLion/ch-0/212.5284.51/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -128,6 +128,19 @@ kruskal: cmake_check_build_system
 kruskal/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kruskal.dir/build.make CMakeFiles/kruskal.dir/build
 .PHONY : kruskal/fast
+
+#=============================================================================
+# Target rules for targets named prim
+
+# Build rule for target.
+prim: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 prim
+.PHONY : prim
+
+# fast build rule for target.
+prim/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/prim.dir/build.make CMakeFiles/prim.dir/build
+.PHONY : prim/fast
 
 #=============================================================================
 # Target rules for targets named lab2
@@ -190,6 +203,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab2.dir/build.make CMakeFiles/lab2.dir/main.c.s
 .PHONY : main.c.s
 
+prim.o: prim.c.o
+.PHONY : prim.o
+
+# target to build an object file
+prim.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/prim.dir/build.make CMakeFiles/prim.dir/prim.c.o
+.PHONY : prim.c.o
+
+prim.i: prim.c.i
+.PHONY : prim.i
+
+# target to preprocess a source file
+prim.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/prim.dir/build.make CMakeFiles/prim.dir/prim.c.i
+.PHONY : prim.c.i
+
+prim.s: prim.c.s
+.PHONY : prim.s
+
+# target to generate assembly for a file
+prim.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/prim.dir/build.make CMakeFiles/prim.dir/prim.c.s
+.PHONY : prim.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -200,12 +237,16 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... kruskal"
 	@echo "... lab2"
+	@echo "... prim"
 	@echo "... kruskal.o"
 	@echo "... kruskal.i"
 	@echo "... kruskal.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... prim.o"
+	@echo "... prim.i"
+	@echo "... prim.s"
 .PHONY : help
 
 

@@ -64,6 +64,7 @@ CMAKE_BINARY_DIR = /home/xiataoyue/Desktop/VE477/labs/lab2/cmake-build-debug
 
 # The main recursive "all" target.
 all: CMakeFiles/kruskal.dir/all
+all: CMakeFiles/prim.dir/all
 all: CMakeFiles/lab2.dir/all
 .PHONY : all
 
@@ -73,6 +74,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/kruskal.dir/clean
+clean: CMakeFiles/prim.dir/clean
 clean: CMakeFiles/lab2.dir/clean
 .PHONY : clean
 
@@ -101,6 +103,32 @@ kruskal: CMakeFiles/kruskal.dir/rule
 CMakeFiles/kruskal.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/kruskal.dir/build.make CMakeFiles/kruskal.dir/clean
 .PHONY : CMakeFiles/kruskal.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/prim.dir
+
+# All Build rule for target.
+CMakeFiles/prim.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/prim.dir/build.make CMakeFiles/prim.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/prim.dir/build.make CMakeFiles/prim.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/xiataoyue/Desktop/VE477/labs/lab2/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target prim"
+.PHONY : CMakeFiles/prim.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/prim.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xiataoyue/Desktop/VE477/labs/lab2/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/prim.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/xiataoyue/Desktop/VE477/labs/lab2/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/prim.dir/rule
+
+# Convenience name for target.
+prim: CMakeFiles/prim.dir/rule
+.PHONY : prim
+
+# clean rule for target.
+CMakeFiles/prim.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/prim.dir/build.make CMakeFiles/prim.dir/clean
+.PHONY : CMakeFiles/prim.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/lab2.dir
