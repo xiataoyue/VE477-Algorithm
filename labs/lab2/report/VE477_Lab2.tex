@@ -1,0 +1,83 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{blkarray}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[linesnumbered, ruled]{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+
+\geometry{left = 2.0cm, right = 2.0cm}
+
+
+\title{
+    \begin{figure}[H]
+        \centering
+        \includegraphics{AAA.png}
+    \end{figure}
+    VE477 Introduction to Algorithms\\ 
+    Lab 1}
+\author{Taoyue Xia, 518370910087}
+\date{2021/09/28}
+
+\begin{document}
+\maketitle
+
+\newpage
+\setcounter{section}{1}
+\section{Getting started with OCaml}
+\subsection{More documentation}
+\begin{itemize}
+    \item Anonymous functions can be defined using the \textbf{fun} or \textbf{function} construct, 
+          for example, (fun x -> x * x).
+
+          Anonymous functions are values and are used to be passed to other functions as inputs.
+    
+    \item Capital letters cannot be used for variables and functions, underscore is used instead.
+    
+    \item In OCaml, every piece of code is wrapped into a module, and a module can be submodule of another module. 
+          When you create a file, for example, named ``amodule.ml'', it will automatically define a module named ``Amodule''.
+
+          Different from OOP, we don't need to create a new instance to use the methods and variables.
+
+    \item \textbf{List} is the array type defined in OCaml. In package \textbf{Lists}, many operation methods on arrays are defined, 
+          such as \textbf{``List.partition''} and \textbf{``List.map''}.
+
+    \item \textbf{List.map} and \textbf{List.iter} both can iterate through a list. However, 
+          \textbf{List.map} needs anonymous function to pass into it, and it will return a new list, 
+          while \textbf{List.iter} is like the usage of a for loop.
+
+          \textbf{List.map} can map the input to an output according to the anonymous function, 
+          and \textbf{List.iter} is a more efficient way to iterate comparing with for and while loops.
+
+    \item Folding can apply the defined anonymous function to elements in the list, and return the accumulated result.
+          
+          For example, \textbf{List.fold\_left (+) 0 [1; 3; 5; 7];;}, which will add 1 to 0, and then add 3 to the previous result, 
+          until 7 is added, which will give a result of $1+3+5+7 = 16$.
+
+    \item Tail recursive functions can be optimized by compilers from recursive functions to while loops, 
+          if the recursion call is at the end of the function definition, 
+          and they run in constant stack space, avoiding stack overflow, which is important.
+
+    \item \textbf{ref} means creating a reference and turn it into a pointer. \textbf{ref} is used when you want to make data mutable.
+    
+    \item A functor is a module that is parametrized by another module. It can define the data type of the new created module, 
+          like the template in C++ does. However, functors can refine signatures of modules, but templates are limited due to private and public attributes.
+
+    \item \textbf{type t = type1 | type2 | type3 ... | type n}, or
+        
+          \textbf{type t = $\{\text{type1}\, :\, \text{t1};\, \text{type2}\, :\, \text{t2};\, ...;\, \text{typen}\, :\, \text{tn}\}$}
+
+    \item Sum types generalize what is often known as enum, union, or variant record. Product types are like tuples, products of types.
+    
+          Sum types can be used to model finite sets, which is like enum in C. Product types are used when multiple properties exist simultaneously.
+
+\end{itemize}
+
+
+\end{document}

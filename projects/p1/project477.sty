@@ -1,0 +1,133 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{project477}[2020/09/09 ve477 project]
+
+% package option
+\RequirePackage{xkeyval}
+\define@boolkeys{project477.sty}[project@]{tcbox}[true]{}
+
+\newif\ifturnitin 
+\DeclareOptionX{turnitin}{\turnitintrue}
+
+\ProcessOptionsX*
+
+% subfiles
+\RequirePackage{subfiles}
+\newcommand{\includeproblem}[1]{\IfFileExists{./problem-#1.tex}{\subfile{problem-#1.tex}}{}}
+\RequirePackage{forloop}
+\newcounter{pb}
+
+% temproray cover
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\newcommand{\covertmp}{\begin{tikzpicture}[overlay, remember picture]\draw[fill=black!90,draw=none]  (current page.north east) rectangle (current page.south west);\node[font=\Huge\bf,align=center,black!10] at ($(current page.center)+(0,8)$) {Introduction to Algorithms\\ Fall 2019};\node[font=\Large,align=center,black!30] at (current page.center) {Design a cover for the catalog and\\ get +1 mark bonus on your final grade!};\end{tikzpicture}}
+
+% geometry, fonts, links...
+\RequirePackage[margin=2cm]{geometry}
+\RequirePackage[colorlinks=true, breaklinks=true, linkcolor=blue!65, urlcolor=blue!80, linktocpage=true,citecolor=blue!40]{hyperref}
+\RequirePackage{setspace}
+\RequirePackage{enumitem}
+\onehalfspacing
+\setlength\parindent{0pt}
+\setlength\parskip{.125cm}
+\setlist{itemsep=.125cm,topsep=0cm}
+
+\RequirePackage{ifxetex,ifluatex}
+\newif\ifxetexorluatex
+\ifxetex
+  \xetexorluatextrue
+\else
+  \ifluatex
+    \xetexorluatextrue
+  \else
+    \xetexorluatexfalse
+  \fi
+\fi
+
+
+\ifxetexorluatex
+	\RequirePackage{fontspec}
+	\setmainfont{CMU Sans Serif}
+	\setsansfont{CMU Sans Serif}
+	\setmonofont[Scale=.9]{CMU Typewriter Text}
+\fi 
+\RequirePackage[cm]{sfmath}
+\RequirePackage[english]{babel}
+
+% header/footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancyhead[LE,RO]{\nouppercase\rightmark}
+\fancyhead[LO,RE]{\nouppercase\leftmark}
+\fancyfoot[LO,RE]{\thepage}
+\fancyfoot[LE,RO]{Introduction to Algorithms~(Fall~\the\year)} 
+
+% bibliography + autolabel (label based on filename)
+\RequirePackage[backref=true,defernumbers=true,citestyle=numeric,maxbibnames=10,refsection=section]{biblatex}
+\RequirePackage{currfile}
+\forloop{pb}{1}{\thepb <137}{\IfFileExists{./problem-\thepb.bib}{\addbibresource{problem-\thepb.bib}}{}}
+
+% images
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{subfig,caption}
+
+% tables
+\RequirePackage{booktabs,multirow,varwidth}
+
+% math
+\RequirePackage{amsmath,amssymb,amsfonts}
+\RequirePackage{commath,cases,bm}
+\numberwithin{equation}{section}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}  
+\newtheorem{corollary}{Corollary}
+
+% pseudocode
+\RequirePackage[linesnumbered,ruled,longend]{algorithm2e}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\newcommand{\To}{\KwTo}
+\newcommand{\Ret}{\KwRet}
+\SetKwProg{Fn}{Function}{\string:}{end}
+\SetKw{and}{ and }
+\SetKw{oor}{ or }
+\SetAlTitleSty{}
+\SetTitleSty{textit}{}
+\newcommand{\cmt}[1]{\tcc*[f]{#1}}
+\newcommand{\NULL}{{\tt NULL}}
+\newcommand{\get}{\ensuremath{\gets}}
+
+\newenvironment{Algorithm}[1][]{\def\algoname{#1}\bigskip\begin{algorithm}[!htb]}{\caption{\algoname}\end{algorithm}}
+
+\RequirePackage{ifthen}
+\def\pbtypecol{black}
+\newcommand{\pbtype}[1]{\ifthenelse{\equal{#1}{graph}}{\def\pbtypecol{green}}{\ifthenelse{\equal{#1}{math}}{\def\pbtypecol{orange}}{\ifthenelse{\equal{#1}{combinatory}}{\def\pbtypecol{blue}}{\ifthenelse{\equal{#1}{string}}{\def\pbtypecol{red}}{\ifthenelse{\equal{#1}{network}}{\def\pbtypecol{yellow}}{\ifthenelse{\equal{#1}{ai}}{\def\pbtypecol{cyan}}{\ifthenelse{\equal{#1}{image}}{\def\pbtypecol{magenta}}{\def\pbtypecol{gray}}}}}}}}}
+\newenvironment{problem}[1]{\smallskip {\bf Problem.} #1\par}{\par}
+
+% overview
+\renewcommand{\descriptionlabel}[1]{\hspace{20pt}\textbullet\ \em{#1}}
+\newenvironment{overview}{\medskip\begin{description}}{\end{description}\bigskip}
+
+% disable tcbox when turnitin is enabled + force empty style
+\ifturnitin 
+	\setkeys{project477.sty}{tcbox=false}
+	\pagestyle{empty}
+\fi
+
+% enable tccolorbox
+\ifproject@tcbox
+	\RequirePackage{tcolorbox}
+	\tcbuselibrary{skins}
+	\newtcolorbox{problembox}[2][]{skin=enhanced jigsaw,interior hidden,boxsep=5pt,top=5pt,colframe=#1,coltitle=#1!50!black,fonttitle=\bfseries\sffamily,attach boxed title to top left={xshift=15mm},boxed title style={empty,boxrule=0.5mm},varwidth boxed title=0.5\linewidth,underlay boxed title={\draw[white,line width=1.5mm]([xshift=0.3mm-\tcboxedtitleheight*2]title.south west)--([xshift=-0.3mm+\tcboxedtitleheight*2]title.south east);\path[draw=#1,bottom color=white,top color=#1!50!white,line width=0.5mm]([xshift=0.25mm-\tcboxedtitleheight*2,yshift=-0.25mm]title.south west)cos +(\tcboxedtitleheight,\tcboxedtitleheight/2)sin +(\tcboxedtitleheight,\tcboxedtitleheight/2)-- ([xshift=0.25mm,yshift=-0.25mm]title.north west)-- ([yshift=-0.25mm]title.north east)cos +(\tcboxedtitleheight,-\tcboxedtitleheight/2)sin +(\tcboxedtitleheight,-\tcboxedtitleheight/2); },title={#2}}
+	\tcolorboxenvironment{overview}{blanker,before skip=10pt,after skip=10pt,borderline west={3mm}{0pt}{\pbtypecol}}
+	\renewenvironment{problem}[1]{\smallskip\begin{problembox}[\pbtypecol]{#1}}{\end{problembox}\smallskip}
+\fi
+
+\endinput

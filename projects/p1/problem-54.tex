@@ -1,0 +1,124 @@
+%
+% do not add anything in this part
+%
+\documentclass[catalog.tex]{subfiles}
+
+% bib file: write the bibliography in a file having the same name as the latex file
+% change the suffix".tex" by ".bib" 
+% biblatex is required, do not use bibtex!
+% DO NOT TOUCH THE FOLLOWING LINE
+
+\begin{document}
+
+%
+% things can be added below
+%
+
+\def\pbname{Factorization (Multi Precision Quadratic Sieve)} %change this, do not use any number, just the name
+
+\section{\pbname} 
+
+% only for overview, so short description (no more than 1-2 lines)
+\begin{overview}
+\item [Algorithm:] Fermat's method~(algo.~\ref{alg:\currfilebase_a}), Quadratic sieve~(algo.~\ref{alg:\currfilebase_b}) 
+	% -	must match the label of the algorithm 
+	% - when writing more than one algo use alg:\currfilebase_a, alg:\currfilebase_b, etc.
+\item [Input:] A positive number needs to be factorized.
+\item [Complexity:] $e^{(1+\mathcal{O}(1))\sqrt{\ln n \ln \ln n}}$
+\item [Data structure compatibility:] N/A
+\item [Common applications:] Large number factorization, like RSA.
+\end{overview}
+
+
+\begin{problem}{\pbname}
+	Given a positive number $n$, find its factorization using quadratic sieve.
+\end{problem}
+
+
+\subsection*{Description}
+To clearly understand how the Quadratic sieve works, we should first look at Fermat's factorization method.
+
+\subsubsection{Fermat's factorization method}
+It is obvious that if an odd integer $n$ can be represented by $n = a^2 - b^2$, then it can be factorized as $n = (a+b)(a-b)$. In this sense, if $n=cd$, where $c$ and $d$ are two odd numbers, $n$ can be expressed as $n = (\frac{c+d}{2})^2 - (\frac{c-d}{2})^2$, which is the general form~\cite{gupta2009revisiting}. However, it is similar to trivial division to some extent, so it takes a long time to finally find the square collision.
+
+% add comment in the pseudocode: \cmt{comment}
+% define a function name: \SetKwFunction{shortname}{Name of the function}
+% use the defined function: \shortname{$variables$}
+% use the keyword ``function'': \Fn{function name}, e.g. \Fn{\shortname{$var$}}
+\begin{Algorithm}[Fermat's method\label{alg:\currfilebase_a}]
+	% -	must match the reference in the overview
+	% - when writing more than one algo use alg:\currfilebase_a, alg:\currfilebase_b, etc.
+	\SetKwFunction{fact}{FermatFact}	
+	\Input{A number $n$ which needs factorization}
+	\Output{a tuple $(c,d)$, which satisfies $n = cd$}
+	\BlankLine
+	
+	\Fn{\fact{$n$}}{
+	    $a \leftarrow \lceil \sqrt{n} \rceil$\;
+	    $b \leftarrow a^2 - n$\;
+	    \While{$b$ is not a square number}{
+	        $a \leftarrow a + 1$\;
+	        $b \leftarrow a^2 - n$\;
+	    }
+	    $c \leftarrow a + \sqrt{b}$\;
+	    $d \leftarrow a - \sqrt{b}$\;
+	    \Ret{$(c, d)$}
+	}
+
+\end{Algorithm}
+
+Next, we need to know some basic knowledge about smooth numbers.
+
+\subsubsection{Smooth numbers}
+It is known that every positive integer can be represented as the multiplication of the power of prime numbers, in the form $n = \prod p_i^{e_i}$, where $p_i$ and $e_i$ denote for the prime number and its corresponding power. Then it comes to the definition of smooth numbers. A positive integer is called \textit{B-smooth} if none of its prime factors exceeds $B$~\cite{Smooth}.
+
+\subsubsection{Quadratic sieve}
+Since it is quite slow to factorize a large integer using trivial division or Fermat's factorization method, the quadratic sieve was invented to make factorization faster. It first chooses a \textit{B-smooth} bound where $B$ is chosen to meet the requirement that the Legendre symbol $(\frac{n}{p_i}) = 1$, where $p_i$ denotes for all the prime numbers that are not greater than $B$. Usually, $B$ will not be greater than 40. Then, the number of primes less than $B$, often known as $\pi(B)$, is used to determine the interval to choose integers to try for square congruence modular $n$, commonly $I = [\lfloor \sqrt{n} \rfloor - \pi(B), \lfloor \sqrt{n} \rfloor + \pi(B)]$~\cite{QS}.
+
+Then we will try the squares of integers in the interval modular $n$, which each gives a congruence that can be represented by multiple of prime factors. Then using linear algebra, we can find some combination such that for $a\in I, b\in I$, $a^2\cdot b^2 \equiv c\mod n$, where $c$ is a square number and can be expressed as the multiplication of prime numbers each has an even power. By finding this, we can calculate the GCD (greatest common divisor) $gcd(a+b, n)$ and $gcd(a-b,n)$, the two numbers will be the factorization of $n$~\cite{QS}.
+
+Take a very simple example, considering the number 1649. First take the floor of its square root, which is $\lfloor 1649 \rfloor = 40$. Then, $41^2 \equiv 32\mod 1649$, $42^2 \equiv 115\mod 1649$, $43^2 \equiv 200\mod 1649$. We can find that $32*200 = 6400 = 80^2$ is a square, thus $41^2\cdot 43^2 \equiv 114^2 \equiv 80^2\mod 1649$. Hence, $(114-80)\cdot (114+80) \equiv 34\cdot 194 \equiv 0\mod 1649$, which means that there exists a positive integer $k$ such that $34\cdot 194 = k\cdot 1649$. Therefore, $1649 = gcd(34, 1649)\cdot gcd(194, 1649) = 17\cdot 97$~\cite{joyOfFactoring}.
+\begin{Algorithm}[Quadratic sieve\label{alg:\currfilebase_b}]
+	% -	must match the reference in the overview
+	% - when writing more than one algo use alg:\currfilebase_a, alg:\currfilebase_b, etc.
+	\SetKwFunction{QS}{QuadraticSieve}	
+	\Input{A number $n$ which needs factorization}
+	\Output{a tuple $(c,d)$, which satisfies $n = cd$}
+	\BlankLine
+	
+	\Fn{\QS{$n$}}{
+	    Choose a smooth bound $B$\;
+	    $t \leftarrow \pi(B)$\;
+	    \BlankLine
+	    \For{$i\leftarrow 1$ to $t+1$}{
+	        choose an integer $x$ from $I=[-t, t]$\;
+	        $a_i \leftarrow x + \lfloor \sqrt{n} \rfloor$\;
+	        $b_i \leftarrow a_i^2 - n$ \cmt{$b_i = \prod_{j=1}^t p_j^{e_{i,j}}$}\;
+	        $v_i \leftarrow (e_{i,1}\mod 2, e_{i,2}\mod 2, \dots, e_{i,t}\mod 2)$\;
+	        Let $T \subseteq \{1,2,\dots,t+1\}$ such that $\sum_{k\in T}v_k = 0$ in $\mathbb{F}_2$\;
+	        \cmt{$\mathbb{F}_2$ denotes for the finite field of base 2}\;
+	        $x \leftarrow \prod_{k\in T} a_k$\;
+	        $y \leftarrow \prod_{j=1}^t p_j^{\sum_{k\in T} e_{k,j}}$\;
+	        \eIf{$x\not\equiv y\mod n$ and $x\not\equiv -y\mod n$}{
+	            continue\;
+	        }
+	        {
+	            $c \leftarrow gcd(x+y, n)$\;
+	            $d \leftarrow gcd(x-y, n)$\;
+	            \Ret{$(c, d)$}\;
+	        }
+	    }
+	    \BlankLine
+	}
+
+\end{Algorithm}
+% include references where to find information on the given problem using latex bibliography
+% insert references in the text (\cite{}) and write bibliography file in problem-nb.bib (replace nb with the problem number)
+% prefer books, research articles, or internet sources that are likely to remain available over time
+% as much as possible offer several options, including at least one which provide a detailed study of the problem
+% if available include links to programs/code solving the problem
+% wikipedia is NOT acceptable as a unique reference
+\singlespacing
+\printbibliography[title={References.},resetnumbers=true,heading=subbibliography]
+
+\end{document}
