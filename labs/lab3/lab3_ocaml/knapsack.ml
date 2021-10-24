@@ -26,23 +26,23 @@ let time f =
 ;;
 
 let small n l = 
-  let result = small_first l n [] in
-  begin
+  (* let result = *)small_first l n []
+  (* begin
     Printf.printf "%d: " n;
     print_string "[";
     List.iter (Printf.printf "%d ") result;
     print_string "]\n"
-  end
+  end *)
 ;;
 
 let large n ll = 
-  let result = large_first ll n [] in
-  begin
+  (*let result = *)large_first ll n []
+  (* begin
     Printf.printf "%d: " n;
     print_string "[";
     List.iter (Printf.printf "%d ") result;
     print_string "]\n";
-  end
+  end *)
 ;;
 
 let rec create_list n = 
@@ -51,12 +51,12 @@ let rec create_list n =
   | _ -> (Random.int 25) :: create_list (n-1)
 ;;
 
-let rec init_lists n = 
+let rec init_lists n num = 
   match n with
   | 0 -> []
   | _ -> let x = 100 + (Random.int 30) in
-         let y = List.stable_sort compare (create_list 7) in
-         (x, y) :: init_lists (n-1)
+         let y = List.stable_sort compare (create_list num) in
+         (x, y) :: init_lists (n-1) num
 ;;
  
 let get_ele1 (a, _) = a;;
@@ -79,16 +79,26 @@ let rec large_test l =
 ;;
 
 
+
+let size = [10;20;30;40;50;100;1000;10000;100000];;
+let length = List.length size;;
 Random.self_init ();;
 let num_loop = 100;;
 (* let n = read_int();;
 let s = read_line();;
 let l = List.stable_sort compare (List.map int_of_string (Str.split (Str.regexp " ") s));; *)
-let l = init_lists num_loop;;
-time (fun () -> small_test l);;
-
+for i = 0 to length - 1 do
+  let n = List.nth size i in
+  let l = init_lists num_loop n in
+  print_string "Size: "; print_int n; print_string "    ";
+  time (fun () -> small_test l)
+done;;
 (* let n = read_int();;
 let s = read_line();;
 let ll = List.stable_sort (fun x y -> compare y x) (List.map int_of_string (Str.split (Str.regexp " ") s));; *)
-let ll = init_lists num_loop;;
-time (fun () -> large_test ll);;
+for i = 0 to length - 1 do
+  let n = List.nth size i in
+  let ll = init_lists num_loop n in
+  print_string "Size: "; print_int n; print_string "    ";
+  time (fun () -> large_test ll)
+done;;
