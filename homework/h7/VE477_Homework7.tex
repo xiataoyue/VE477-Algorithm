@@ -1,0 +1,107 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{blkarray}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[linesnumbered, ruled]{algorithm2e}
+\usepackage{forest}
+\usepackage{diagbox}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{subfig}
+
+\geometry{left = 2.0cm, right = 2.0cm}
+
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwProg{Fn}{Function}{:}{end}
+
+\title{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=7cm, height=5cm]{AAA.png}
+    \end{figure}
+    VE477 Introduction to Algorithms\\ 
+    Homework 7}
+\author{Taoyue Xia, 518370910087}
+\date{2021/11/22}
+
+\begin{document}
+\maketitle
+
+\newpage
+
+\section*{Ex. 1 --- Karger-Stein’s Algorithm}
+\begin{enumerate}
+    \item According to the probability equation on slide 5.29, we can conclude that:
+          \[\Pr[a cut to survive] = \frac{1}{\begin{pmatrix} |V|\\ 2\end{pmatrix}} = \frac{1}{15}\]
+    \item Let $p_k$ be the probability of successfully computing in the $k_{th}$ recursion, which is $P(\frac{t}{\sqrt{2}})$, and $p_{k+1}$ as $P(t)$, then according to the above question, we can get:
+          \[P(t) =
+          \begin{cases}
+             1 - (1 - \frac{1}{2}P(\frac{t}{\sqrt{2}}))^2 = P(\frac{t}{\sqrt{2}}) - \frac{1}{4} P(\frac{t}{\sqrt{2}})^2& t > 6\\
+             \frac{1}{15} & t \leq 6
+          \end{cases}
+          \]
+          Therefore, let the case when $t \leq 6$ be the basic case as $p_0$, and others be $p_k$, we can finally get:
+          \[
+            \begin{cases}
+                p_{k+1} = p_k - \frac{1}{4}p_k^2\\
+                p_0 = \frac{1}{15}
+            \end{cases}
+          \]
+    \item \begin{enumerate}[a)]
+        \item Since $z_k = 4 / p_k - 1$, we can use the result of the previous question to show that:
+              \begin{align*}
+                  z_{k+1} &= \frac{4}{p_{k+1}} - 1\\
+                          &= \frac{4}{p_k - \frac{1}{4}p_k^2} - 1\\
+                          &= \frac{4}{p_k}\cdot \frac{1}{1 - \frac{1}{4}p_k} - 1\\
+                          &= \frac{4}{p_k}\cdot \frac{4}{4 - p_k} - 1\\
+                          &= (z_k + 1) \cdot (\frac{4}{p_k}\cdot \frac{1}{z_k}) - 1\\
+                          &= (z_k + 1)\cdot ((z_k + 1)\cdot \frac{1}{z_k}) - 1\\
+                          &= (z_k + 1)\cdot (1 + \frac{1}{z_k}) - 1\\
+                          &= z_k + 1 + 1 + \frac{1}{z_k} - 1\\
+                          &= z_k + 1 + \frac{1}{z_k}
+              \end{align*}
+              For $z_0$, 
+              \[z_0 = \frac{4}{p_0} - 1 = 4\cdot 15 - 1 = 59\]
+              Therefore, combining the two results, we can conclude that:
+              \[
+              \begin{cases}
+                  z_{k+1} &= z_k + 1 + \frac{1}{z_k}\\
+                  z_0 &= 59
+              \end{cases}
+              \]
+              Proof done.
+        \item According to the result proved in the previous question, which is $z_{k+1} = z_k + 1 + \frac{1}{z_k}$ and $z_0 = 59$, we can see that $z_k > z_{k-1} + 1 > \cdots > z_{0} + k = 59 + k > k$, when $k \geq 1$.
+              
+              Also, since $z_0 = 59$, and $z_k$ is strictly increasing when $k$ is increasing, we can be sure that $\frac{1}{z_k} < 1$, which indicates that $z_{k+1} < z_k + 2$. In this sense, we can show that:
+              \[z_k < z_{k-1} + 2 < \cdots < z_0 + 2k = 59 + 2k, \quad \forall k \leq 1\]
+              Therefore, we can conclude that $\forall k \leq 1, k < z_k < 59 + 2k$.
+    \end{enumerate}
+    \item From 3(b) we have proved that $k < z_k < 59 + 2k$, which indicates that $z_k = \Theta(k)$. Since $z_k = \frac{4}{p_k} - 1 \Rightarrow p_k = \frac{4}{z_k + 1}$, we can have $p_k = \Theta(\frac{1}{k})$.
+          
+          As the depth of the recursion is $d = 2\log_2 n + \mathcal{O}(1)$, we can know that $p_{d} = \Theta(\frac{1}{\log n})$.
+
+          Since $t = n / \sqrt{2} \Rightarrow n = \sqrt{2}t$, we can have $P(n) = P(\sqrt{2}t) = p_d = \Theta(\frac{1}{\log n})$. 
+
+          Therefore, $P(n) = \Omega(1 / \log n)$.
+\end{enumerate}
+
+\section*{Ex. 2 --- Critical thinking}
+\begin{enumerate}
+    \item We can apply an auxiliary stack along with the current stack to realize the operations. The auxiliary stack is used when the new pushed element is smaller than the current min, 
+          then the new element will be \textbf{pushed} both into the basic stack and the auxiliary stack, which updates the min. 
+          
+          For \textbf{retrieving} the minimum element, we just need to get the top element of the auxiliary stack, which is in constant time.
+
+          For \textbf{pop} operation, it also needs to check whether the top element is the current min element. If the two matches, pop one element from each of the two stacks. If not, just pop from the basic stack. The min will also be updated.
+    \item It will take just 1 second. Since all the ants walk at speed $1\, m/s$, we can see them as all the same. Then when two ants collide, the action of reverse will look like they just pass each other, making no difference with just walking ahead. 
+          Therefore, the whole procedure will last at most 1 second, for an ant walking from one end to the other.
+\end{enumerate}
+
+
+
+\end{document}
