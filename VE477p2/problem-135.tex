@@ -1,0 +1,148 @@
+%
+% do not add anything in this part
+%
+\documentclass[catalog.tex]{subfiles}
+
+% bib file: write the bibliography in a file having the same name as the latex file
+% change the suffix".tex" by ".bib" 
+% biblatex is required, do not use bibtex!
+% DO NOT TOUCH THE FOLLOWING LINE
+
+\begin{document}
+
+%
+% things can be added below
+%
+
+\def\pbname{Lempel Ziv Welch} %change this, do not use any number, just the name
+
+\section{\pbname} 
+
+% only for overview, so short description (no more than 1-2 lines)
+\begin{overview}
+\item [Algorithm:] LZW Encoding~(algo.~\ref{alg:\currfilebase_a}), LZW Decoding~(algo.~\ref{alg:\currfilebase_b})
+	% -	must match the label of the algorithm 
+	% - when writing more than one algo use alg:\currfilebase_a, alg:\currfilebase_b, etc.
+\item [Input:] A string for encoding, or a list of integers ranging from 0--4095 (ASCII representation) for decoding
+\item [Complexity:] $\mathcal{O}(n)$
+\item [Data structure compatibility:] N/A
+\item [Common applications:] Unix file compression and used in GIF image format
+\item [Note:] LZW stands for ``Lempel Ziv Welch''
+\end{overview}
+
+
+\begin{problem}{\pbname}
+	Encoding: Given a string $s$, compress it into a list of ASCII code.
+	
+	Decoding: Given a list of ASCII code, recover the original string.
+\end{problem}
+
+
+\subsection*{Description}
+Nowadays, almost everyone needs compression, the reasons for this are as follows:
+\begin{itemize}
+    \item Original data without compression may occupy a lot space on disk, limiting the space to put important things. Also, without compression, if we want to download some files from the internet, it will take quite a long time since network speed is limited.
+    \item Algorithms of reducing data size like compressing can help improve the development of hardwares.
+\end{itemize}
+
+In this sense, the Lempel-Ziv-Welch Algorithm is introduced as a lossless compression algorithm for reducing data size. In practice, an English text file with large size can be compressed using LZW and its size can be reduced to about half the original size.
+
+\subsubsection*{Method of LZW compression/Encoding}
+LZW compression works as reading input of string containing different symbols, and then converting the strings of symbols into codes, usually ranging from 0 to 4095~\cite{ziv_lempel_1978}. To be more specific, the following steps show the exact procedure of LZW compression:
+\begin{itemize}
+    \item First, create a code table, with 4096 the usual number of entries. Codes 0 -- 255 represents the ASCII codes for all the symbols in character.
+    \item Then read characters of the input string one by one. If the sequence of the previous character and the current one does exist in the table for corresponding code, then assign a new entry in the table of this sequence, and keep the sequence to the next iteration. If the sequence does not have a corresponding entry in the table, just output the code for the current sequence, and assign the sequence as the current character, and resume the remaining iterations~\cite{welch_1984}.
+    \item Finally, after reading the last character of the string, output the last sequence's code.
+\end{itemize}
+
+\subsection*{Method of LZW Decompression/decoding}
+The steps for LZW decompression is shown below:
+\begin{itemize}
+    \item Create a default table containing indexes ranging from 0 -- 255 and their corresponding characters.
+    \item Then it operates similarly as the compression method, just reverse the code into original string.
+\end{itemize}
+
+\subsubsection*{Time Complexity}
+Since we just need the number of iterations equal to the length of input string, the time complexity for both compression and decompression is $\mathcal{O}(n)$.
+
+\subsubsection*{Applications}
+The Graphics Interchange Format (GIF) uses LZW for encoding and decoding. Different codes in the color stand for different pixels, and all of which would be combined as an animation picture.
+
+\subsubsection*{Pseudocode for LZW Encoding}
+% add comment in the pseudocode: \cmt{comment}
+% define a function name: \SetKwFunction{shortname}{Name of the function}
+% use the defined function: \shortname{$variables$}
+% use the keyword ``function'': \Fn{function name}, e.g. \Fn{\shortname{$var$}}
+\begin{Algorithm}[LZW Encoding\label{alg:\currfilebase_a}]
+	% -	must match the reference in the overview
+	% - when writing more than one algo use alg:\currfilebase_a, alg:\currfilebase_b, etc.
+	%\SetKwFunction{myfunction}{MyFunction}	
+	\Input{A string of characters $s$}
+	\Output{a list of codes compressed from $s$}
+	%	\Fn{\myfunction{$a,b$}}{
+	%	}
+	\BlankLine
+    table $\leftarrow$ a table with 256 single characters as keys and 0 -- 255 as values\;
+    output $\leftarrow$ an empty list\;
+    $c \leftarrow s[0]$\;
+    index $\leftarrow 256$\;
+    \For{$i = 1$ to $s.length - 1$}{
+        $c^\prime \leftarrow s[i]$\;
+        \uIf{$c+c^\prime$ is in table}{
+            $c \leftarrow c + c^\prime$\;
+        }
+        \Else{
+            push $c$ into output\;
+            table[$c + c^\prime$] $\leftarrow$ index\;
+            index $\leftarrow$ index + 1\;
+            $c \leftarrow c^\prime$\;
+        }
+    }
+	\Ret output\;
+
+\end{Algorithm}
+
+\subsubsection{Pseudocode for LZW Decoding}
+\begin{Algorithm}[LZW Decoding\label{alg:\currfilebase_b}]
+	% -	must match the reference in the overview
+	% - when writing more than one algo use alg:\currfilebase_a, alg:\currfilebase_b, etc.
+	%\SetKwFunction{myfunction}{MyFunction}	
+	\Input{A list $l$ of codes}
+	\Output{The original string $s$ compressed into $l$}
+	%	\Fn{\myfunction{$a,b$}}{
+	%	}
+	\BlankLine
+	table $\leftarrow$ a table with 0 -- 255s as keys and 256 single character as values\;
+	$s \leftarrow$ an empty string\;
+	$c \leftarrow $ table[$l[0]$]\;
+	$s \leftarrow s + c$\;
+	index $\leftarrow$ 256\;
+	\For{$i = 0$ to $l.length - 1$}{
+	    $c^\prime \leftarrow l[i]$\;
+	    \uIf{$c^\prime$ not in table}{
+	        temp $\leftarrow$ table[$l[c]$]\;
+	        temp $\leftarrow$ temp + $x$\;
+	    }
+	    \Else{
+	        temp $\leftarrow$ table[$l[c^\prime]$]\;
+	    }
+	    $s \leftarrow s + $ temp\;
+	    $x \leftarrow$ temp[0]\;
+	    table[index] $\leftarrow$ table[$l[c]$] + $x$\;
+	    index $\leftarrow$ index + 1\;
+	    $c \leftarrow c^\prime$\;
+	}
+	\Ret{$s$}\;
+
+\end{Algorithm}
+\newpage
+% include references where to find information on the given problem using latex bibliography
+% insert references in the text (\cite{}) and write bibliography file in problem-nb.bib (replace nb with the problem number)
+% prefer books, research articles, or internet sources that are likely to remain available over time
+% as much as possible offer several options, including at least one which provide a detailed study of the problem
+% if available include links to programs/code solving the problem
+% wikipedia is NOT acceptable as a unique reference
+\singlespacing
+\printbibliography[title={References.},resetnumbers=true,heading=subbibliography]
+
+\end{document}
