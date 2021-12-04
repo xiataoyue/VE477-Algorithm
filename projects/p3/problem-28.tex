@@ -1,0 +1,98 @@
+\documentclass[catalog.tex]{subfiles}
+
+% do not write anything in the preamble
+
+\begin{document}
+
+\def\pbname{Hitchcock Transport Problem} %change this, do not use any number, just the name
+
+\section{\pbname} 
+
+% only for overview, so short description (no more than 1-2 lines)
+\begin{overview}
+\item [Algorithm:] Minimum Cost Flow~(algo.~\ref{alg:\currfilebase}) 
+	% -	must match the label of the algorithm 
+	% - when writing more than one algo use alg:\currfilebase_a, alg:\currfilebase_b, etc.
+\item [Input:] an array of $m$ suppliers, an array of $n$ receivers, a two-dimensional array of cost from $m_i$ to $n_j$.
+\item [Complexity:] $\mathcal{O}(mn^2 (\log m + n\log n))$.
+\item [Data structure compatibility:] N/A
+\item [Common applications:] Solve the minimum cost of transportation while meet the requests.
+\end{overview}
+
+
+\begin{problem}{\pbname}
+	Suppose there are $m$ sources of commodity $x_1, x_2, \dots, x_m$ with $a(x_i)$ units of supply at $x_i$, and $n$ sinks $y_1, y_2, \dots, y_n$, with demands $b(y_j)$ at $y_j$. Denote $a(x_i, y_j)$ as the unit cost of transportation from $x_i$ to $y_j$, find the solution that meet demands with supplies, while minimizing the transportation cost~\cite{hitchcock_1941}.
+\end{problem}
+
+
+\subsection*{Description}
+In the ``Hitchcock Transport Problem''(abbreviated as HTP), the combination of suppliers and demanders, along with the transportation cost between them, can be seen as a bipartite graph. Therefore, we make some definitions below,
+
+A \textit{flow network} can be represented as a quadratuple $(G, b, u, c)$, where $G$ is a directed graph with $V$, the vertex set, and $E$, the edge set. $b$ is a mapping $V \rightarrow \mathbb{R}$ with $\sum_{v\in V} b(v) = 0$, which means that the total flow leaving or entering the network should be none. $u$ is the a \textit{capacity function} with the mapping $E \rightarrow \mathbb{R}^{+}$. $c$ is a \textit{cost function} $E \rightarrow \mathbb{R}^{+} \cup \{0\}$~\cite{brenner_2008}.
+
+By this construction, our goal is to find the flow $f$ which minimizes $c(f) := \sum_{e\in E} f(e)c(e)$, given the flow network $(G, b, u, c)$.
+
+Also define the set of supplier nodes as $X$, set of demanders as $Y$. Since it would be a necessity to control the nodes $x \in X$ with multiple outgoing edges with positive flow, with setting $f$ as the solution to the HTP, define $\tau_f(x) = |\{y\in Y\, |\, f(x,y) > 0\}|$ be the number of outgoing edges for some $x$, and $F_f = \{x\in X\, |\, \tau_f(x) > 1\}$ be the number of supplier nodes $x$ that have multiple outgoing edges.
+
+Vygen~\cite{vygen_2005} has shown that for constant $n$, an optimal solution $f$ can be transformed into an optimal solution $g$ in linear time with $|F_g| \leq n - 1$.
+
+Then given a flow network $(G, b, u, c)$, an optimal solution $f$, and $F_f$, we can transform $f$ in $\mathcal{O}(n^2|F_f|)$ time into an optimum solution $g$.
+
+Moreover, according to Ford and Fulkerson~\cite{ford_fulkerson_1962}, if we have an instance $(G, b, u, c)$ with finite capacities on $\sigma$ edges, there exists an equivalent "uncapacitated minimum cost flow instance"~\cite{brenner_2008} with $|V|+\sigma$ nodes and $|E|+\sigma$ edges. Also, denote $M_i(y) = \{x\in X\, |\, f((x,y)) = b(x)\}$.
+
+Then applying the \textbf{Minimum Cost Flow}~\ref{alg:\currfilebase}, we can get the minimum cost in $\mathcal{O}(mn^2(\log m + n\log n))$ time.
+
+% add comment in the pseudocode: \cmt{comment}
+% define a function name: \SetKwFunction{shortname}{Name of the function}
+% use the defined function: \shortname{$variables$}
+% use the keyword ``function'': \Fn{function name}, e.g. \Fn{\shortname{$var$}}
+\begin{Algorithm}[Minimum Cost Flow\label{alg:\currfilebase}]
+	% -	must match the reference in the overview
+	% - when writing more than one algo use alg:\currfilebase_a, alg:\currfilebase_b, etc.
+	%\SetKwFunction{myfunction}{MyFunction}	
+	\Input{A flow network instance $(G, b, u, c)$}
+	\Output{The minimum cost flow $f$}
+	%	\Fn{\myfunction{$a,b$}}{
+	%	}
+	\BlankLine
+
+    \ForEach{edge $e$ in $E$}{
+        $f(e) \leftarrow 0$\;
+    }
+    Sort the nodes in $X$ such that $X={x_1, x_2, \dots, x_m}$ with $b(x_1)\geq b(x_2) \geq \dots \geq b(x_n)$\;
+    
+    \For{$i = 1$ to $n$}{
+        Construct a new flow network $NW_i = (G^i, b^i, u^i, c^i)$ as stated above\;
+        Compute a minimum cost flow $g$ in $NW_i$ such that the edges with positive flow do not form a cycle\;
+        \For{$e = (v, w) \in E(G^i)$ and $g(e) > 0$}{
+            \tcc{$e\in X\times Y$ means that $v\in X$ and $w\in Y$}
+            \If{$e\in X \times Y$}{
+                $f(e) \leftarrow f(e) + g(e)$\;
+            }
+            \If{$e\in Y\times F_f$}{
+                \tcc{update the backward edges}
+                $f((w,v)) \leftarrow f((w, v)) - g(e)$\;
+            }
+            \If{$e\in Y\times Y$}{
+                Select $x\in M_i(x)$ with $c^i(e) = c((x, w)) - cost((x, v))$\;
+                $f((x, v)) \leftarrow f((x, v)) - g(e)$\;
+                $f((x, w)) \leftarrow f((X, y)) + g(e)$\;
+            }
+        }
+        Retransform $f$ according to Ford and Fulkerson\;
+    }
+	\Ret $f$\;
+
+\end{Algorithm}
+
+\newpage
+% include references where to find information on the given problem using latex bibliography
+% insert references in the text (\cite{}) and write bibliography file in problem-nb.bib (replace nb with the problem number)
+% prefer books, research articles, or internet sources that are likely to remain available over time
+% as much as possible offer several options, including at least one which provide a detailed study of the problem
+% if available include links to programs/code solving the problem
+% wikipedia is NOT acceptable as a unique reference
+\singlespacing
+\printbibliography[title={References.},resetnumbers=true,heading=subbibliography]
+
+\end{document}

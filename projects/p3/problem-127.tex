@@ -1,0 +1,166 @@
+%
+% do not add anything in this part
+%
+\documentclass[catalog.tex]{subfiles}
+
+% bib file: write the bibliography in a file having the same name as the latex file
+% change the suffix".tex" by ".bib" 
+% biblatex is required, do not use bibtex!
+% DO NOT TOUCH THE FOLLOWING LINE
+
+\begin{document}
+
+%
+% things can be added below
+%
+
+\def\pbname{Image Enhancement} %change this, do not use any number, just the name
+
+\section{\pbname} 
+
+% only for overview, so short description (no more than 1-2 lines)
+\begin{overview}
+\item [Algorithm:] Contrast Enhancement~(algo.~\ref{alg:\currfilebase}) 
+	% -	must match the label of the algorithm 
+	% - when writing more than one algo use alg:\currfilebase_a, alg:\currfilebase_b, etc.
+\item [Input:] An image with $m\times n$ pixels.
+\item [Complexity:] $\mathcal{O}(mn)$
+\item [Data structure compatibility:] N/A
+\item [Common applications:] Make images which are overexposed or underexposed better to recognize, or enhance images with too dark or too bright background.
+\end{overview}
+
+
+\begin{problem}{\pbname}
+	Sometimes an image would be too hard for people to recognize some important details in it due to overexposure, underexposure, or background light problems. Therefore, how to enhance the image, such that the details can be highlighted and clear to see would be the problem.
+\end{problem}
+
+
+\subsection*{Description}
+There are many ways to realize image enhancement. This time I would focus on the contrast enhancement method which takes use of grey-level histogram. 
+
+In image editing and manipulation, contrast enhancement is the method to adjust the histogram of an image to shift pixels between the lightest and darkest parts of the image~\cite{printwiki}.
+
+Usually, contrast enhancement is performed in two steps, firstly a tonal enhancement and then the contrast stretch. Tonal enhancements ``improve the brightness differences in the dark'', grey and bright regions, while a contrast stretch increases the brightness differences ``uniformly across the dynamic range of the image.~\cite{fiete_2010}''
+
+\subsubsection{Grey-level($GL$) Histogram}
+Once given an image, a corresponding grey-level histogram will be created by counting how many times each grey-level value (from 0 to 255) are present in the image. For example, Fig.~\ref{fig:\currfilebase_a} shows the grey-level histogram of an image.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=6.5cm, height=8cm]{\currfilebase_a}
+    \caption{The grey-level histogram of an image}
+    \label{fig:\currfilebase_a}
+\end{figure}
+
+After getting the grey-level histogram, a mapping function would be applied to adjust the current grey-level $GL$ to a new one $GL^\prime$ to realize enhancement. The simplest method is directly contrast reversal, which means that for every pixel in the image, the grey-level value $g(x, y)$ ($(x, y)$ denotes the location of the pixel) would be mapped into $g^\prime(x, y) = 255 - g(x, y)$, the effect of which can be illustrated by Fig.~\ref{fig:\currfilebase_b}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=12cm, height=7cm]{\currfilebase_b}
+    \caption{Contrast Reversal}
+    \label{fig:\currfilebase_b}
+\end{figure}
+
+\subsubsection{Contrast Stretch}
+A high-contrast easy-to-recognize image contains gray-level values of the full range 0 to 255. One method is to create a remapping such that the lowest $GL_{min}$ will be mapped to 0 and the highest $GL_{max}$ will be remapped to 255. Also, $GL$ between them would be linearly remapped between 0 and 255, with the transformation equation as
+$$g^\prime(x,y) = \lfloor \frac{255}{GL_{max} - GL_{min}}(g(x, y) - GL_{min}) \rfloor$$
+If we want to customize the remapped $GL^\prime_{min}$ and $GL^\prime_{max}$, then we can create the following generalized linear transformation.
+$$g^\prime(x, y) = \lfloor \frac{GL^\prime_{max} - GL^\prime_{min}}{GL_{max} - GL_{min}}(g(x, y) - GL_{min}) + GL^\prime_{min} \rfloor$$
+In this way, the relative shape of the histogram would be unchanged, but the range would be expanded to fill all between $[GL^\prime_{min}, GL^\prime_{max}]$. The transformation function is shown in Fig.~\ref{fig:\currfilebase_c}. And the comparison between the original image and the image after stretch is depicted in Fig.~\ref{fig:\currfilebase_d}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=6cm, height=6cm]{\currfilebase_c}
+    \caption{Linear Transformation of the grey-level value}
+    \label{fig:\currfilebase_c}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=12cm, height=11cm]{\currfilebase_d}
+    \caption{Enhancement by contrast stretch}
+    \label{fig:\currfilebase_d}
+\end{figure}
+
+\subsubsection{Tonal Enhancement}
+The contrast stretch method only deal with linear transformation of grey-level values of an image. Sometimes we may need nonlinear transformations such that we can enhance some grey-level regions while potentially reduce the contrast in other regions~\cite{fiete_2010}.
+
+The most common nonlinear transformation is the gamma correction~\cite{poynton_2003}, which uses an exponent of $1/\gamma$ to preprocess the image to produce a linear response to brightness. The transformation formula is as follows
+$$g^\prime(x, y) = \lfloor 255\cdot(\frac{g(x, y)}{255})^{\frac{1}{\gamma}}) \rfloor$$
+If we want to enhance very dark images, the logarithmic enhancement method can be applied as
+$$g^\prime(x, y) = \lfloor 255\cdot\frac{\log(g(x, y) + 1)}{255} \rfloor$$
+Fig.~\ref{fig:\currfilebase_e} and Fig.~\ref{fig:\currfilebase_f} would show the effect of gamma correction and logarithmic enhancement.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=12cm, height=9cm]{\currfilebase_e}
+    \caption{Enhancement using gamma correction}
+    \label{fig:\currfilebase_e}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=12cm, height=4.5cm]{\currfilebase_f}
+    \caption{Logarithmic enhancement}
+    \label{fig:\currfilebase_f}
+\end{figure}
+
+% \begin{table}[!htb]
+% 	\caption{My table}
+% 	\label{tbl:\currfilebase}
+% 	\centering
+% 	\begin{tabular}{lll}
+% 		\toprule
+% 		c1 & c2 & c3 \\
+% 		\midrule
+% 		1 & 2 & 3 \\
+% 		4 & 5 & 6 \\
+% 		\bottomrule
+% 	\end{tabular}
+% \end{table}
+
+% add comment in the pseudocode: \cmt{comment}
+% define a function name: \SetKwFunction{shortname}{Name of the function}
+% use the defined function: \shortname{$variables$}
+% use the keyword ``function'': \Fn{function name}, e.g. \Fn{\shortname{$var$}}
+\begin{Algorithm}[Contrast Enhancement\label{alg:\currfilebase}]
+	% -	must match the reference in the overview
+	% - when writing more than one algo use alg:\currfilebase_a, alg:\currfilebase_b, etc.
+	%\SetKwFunction{myfunction}{MyFunction}	
+	\Input{an Image $I$ with $m\times n$ pixels}
+	\Output{the corresponding image after enhancement $I^\prime$}
+	%	\Fn{\myfunction{$a,b$}}{
+	%	}
+	\BlankLine
+	
+	hist $\leftarrow$ an array of 0s of size 256\;
+	\For{$i = 1$ to $m$}{
+	    \For{$j = 1$ to $n$}{
+	        $GL \leftarrow$ the grey-level value $g(i, j)$\;
+	        hist[$GL$] ++\;
+	    }
+	}
+	Choose a specific method of enhancement $M$\;
+	hist\_after $\leftarrow$ an array of 0s of size 256\;
+	\For{$i = 1$ to $m$}{
+	    \For{$j = 1$ to $n$}{
+	        $GL^\prime \leftarrow M(g(i, j))$\;
+	        $I^\prime(i, j) \leftarrow GL^\prime$\;
+	        hist\_after[$GL^\prime$] ++\;
+	    }
+	}
+
+	\Ret $I^\prime$\;
+
+\end{Algorithm}
+\newpage
+% include references where to find information on the given problem using latex bibliography
+% insert references in the text (\cite{}) and write bibliography file in problem-nb.bib (replace nb with the problem number)
+% prefer books, research articles, or internet sources that are likely to remain available over time
+% as much as possible offer several options, including at least one which provide a detailed study of the problem
+% if available include links to programs/code solving the problem
+% wikipedia is NOT acceptable as a unique reference
+\singlespacing
+\printbibliography[title={References.},resetnumbers=true,heading=subbibliography]
+
+\end{document}
