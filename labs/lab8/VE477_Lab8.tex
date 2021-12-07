@@ -1,0 +1,178 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{blkarray}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[linesnumbered, ruled]{algorithm2e}
+\usepackage{listings}
+\usepackage{xcolor}
+
+
+\geometry{left = 2.0cm, right = 2.0cm}
+
+
+\title{
+    \begin{figure}[H]
+        \centering
+        \includegraphics{AAA.png}
+    \end{figure}
+    VE477 Introduction to Algorithms\\ 
+    Lab 8}
+\author{Taoyue Xia, 518370910087}
+\date{2021/12/07}
+
+\begin{document}
+\maketitle
+
+\newpage
+\section*{Ex. 1 --- General questions}
+\begin{enumerate}
+    \item Linear programming is a method to achieve the best outcome (such as maximum profit or lowest cost) in a mathematical model, 
+          whose requirements are represented by linear constraints and a linear objective function.
+    \item Optimizations, such as the Hitchcock Transport Problem, and problems in microeconomics.
+    \item \textbf{Standard Form}, consists the following three parts:
+          \begin{itemize}
+              \item A linear function to be maximized, e.g., $f(x_1, x_2) = c_1x_1 + c_2x_2$.
+              \item Problem Constraints like
+
+                    \[
+                        \begin{cases}
+                            a_{11}x_1 + a_{12}x_2 &\leq b_1\\
+                            a_{21}x_1 + a_{22}x_2 &\leq b_2\\
+                            a_{31}x_1 + a_{32}x_2 &\leq b_3
+                        \end{cases}    
+                    \]
+              \item Non-negative variables, e.g., $x_1 \leq 0,\ x_2\leq 0$.
+
+          \end{itemize}
+
+          \textbf{Slack Form}, written in a matrix form to, for example, maximize $z$ like
+          \[\begin{bmatrix} 1 & -c^T & 0\\ 0 & A & I \end{bmatrix} \begin{bmatrix} z\\ x\\ s \end{bmatrix} = \begin{bmatrix}
+              0\\ b \end{bmatrix}\]
+          where $s$ are slack variables, $x$ are decision variables, and $z$ is the variable to be maximized.
+
+          \textbf{Standard Form} directly expresses the requirements of the optimization.
+
+          \textbf{Slack Form} uses slack variables to compensate the inequality to become an equation, 
+          because of which the equations can be written in matrix form to be calculated using linear algebra.
+    \item Algorithms are 
+          \begin{itemize}
+              \item The simplex algorithm
+              \item Criss-cross algorithm
+              \item Ellipsoid algorithm
+              \item $\dots$
+          \end{itemize}
+
+          The simplex method operates the requirements in the canonical form,
+          \begin{itemize}
+              \item Maximize $c^Tx$
+              \item subject to $Ax \leq b$ and $x \geq 0$
+          \end{itemize}
+          where $c = \{c_1, \dots, c_n\}$ the coefficients of the objective function, 
+          $x = \{x_1, \dots, x_n\}$ are the variables of the problem, 
+          $A$ is a $p\times n$ matrix, which represents for $p$ constrains, 
+          and $b = \{b_1, \dots, b_p\}$.
+
+          This method is implemented similarly to the Slack Form, but some difference exists.
+
+          We would focus on the problem to find a maximum. 
+          After constructing the initial matrix, we should firstly decide on the pivot column, ranging from 2 to $n+1$. 
+          Then after we choose column $i$, decide on the pivot row, by dividing $b_j$ by $A_{ji}$ as $d_j = b_j / A_{ji}$. 
+          Choose the row with the minimum $d_j$. Then use Gaussian elimination to make all $m_{ki}(k \leq j)$ be 0. 
+          Finally, the first row would give the maximum result.
+    \item Duality is the principle that optimization problems may be viewed from either of two perspectives, 
+          the primal problem or the dual problem.
+
+          For example, if we have an optimization problem which tells us to maximize $c^Tx$ subject to $Ax \leq b$, $x \geq 0$, 
+          the problem can be transformed into the corresponding asymmetric dual problem, 
+          minimize $b^Ty$ subject to $A^Ty = c$, $y \geq 0$.
+          This transformation is used in the simplex method.
+\end{enumerate}
+
+\section*{Ex. 2 --- Toy example for the simplex method}
+\begin{enumerate}
+    \item \begin{enumerate}[a)]
+        \item In standard form, 
+              
+              The linear function is
+              \[y = -2x_1 + 3x_2\]
+              The constraints are
+              \[
+                \begin{cases}
+                    x_1 + x_2 &= 7\\
+                    x_1 - 2x_2 &\leq 4\\
+                \end{cases} 
+              \]
+              Non-negative variables
+              \[x_1 \geq 0\]
+        \item In slack Form
+        
+              The matrix equation can be shown as
+              \[
+                \begin{bmatrix}
+                    1 & 2 & -3 & 0 \\
+                    0 & 1 & 1  & 0 \\
+                    0 & 1 & -2 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    y\\ x_1\\ x_2\\ x_3
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    0\\ 7\\ 4
+                \end{bmatrix}
+              \]
+
+    \end{enumerate}
+    \item First write the system of equations into matrix form, which is 
+          \[
+            \begin{bmatrix}
+                1 & -3 & -1 & -2 & 0 & 0 & 0 & 0\\
+                0 &  1 &  1 &  3 & 1 & 0 & 0 & 30\\
+                0 &  2 &  2 &  5 & 0 & 1 & 0 & 24\\
+                0 &  4 &  1 &  2 & 0 & 0 & 1 & 36
+            \end{bmatrix}    
+          \]
+          Then choose column 2 to be the pivot column, and we calculate the division of row 2, 3, 4 at column 3,
+           to get the values for $x_1$. For row 2, $30/1 = 30$. For row 3, $24/2 = 12$. For row 4, $36/4 = 9$. 
+           So we choose row 4 to be the pivot row, and apply row operation, then the matrix looks like:
+           \[
+            \begin{bmatrix}
+                4 &  0 & -1 & -2 & 0 & 0 & 3 & 108\\
+                0 &  0 & 3 & 10 & 4 & 0 & -1 & 94\\
+                0 &  0 & 3 & 8 & 0 & 2 & -1 & 12\\
+                0 &  4 & 1 & 2 & 0 & 0 &  1 & 36
+            \end{bmatrix}    
+           \]
+           The corresponding feasible solution is $x_1 = x_6 = 0$.
+           
+            Then we choose column 4 and row 3, it gives
+            \[
+            \begin{bmatrix}
+                16 &  0 & -1 & 0 & 0 & 2 & 11 & 444\\
+                0 &  0 & -3 & 0 & 16 & -10 & 1 & 316\\
+                0 &  0 & 3 & 8 & 0 & 2 & -1 & 12\\
+                0 &  16 & 1 & 0 & 0 & -2 &  5 & 132
+            \end{bmatrix}
+            \]
+           Then we choose column 3 and row 3, it gives
+           \[
+            \begin{bmatrix}
+                48 &  0 & 0 & 8 & 0 & 8 & 32 & 1344\\
+                0 &  0 & 0 & 8 & 16 & -8 & 0 & 328\\
+                0 &  0 & 3 & 8 & 0 & 2 & -1 & 12\\
+                0 &  48 & 0 & -8 & 0 & -4 &  16 & 384
+            \end{bmatrix}
+            \]
+
+           Then it reaches the end, since the coefficient of $x_i$ are all non-positive. So we can see that
+           \[z = 28 - \frac{x_3}{6} - \frac{x_5}{6} - \frac{2x_6}{3} \]
+           so we can conclude that z can reach the maximum 28.
+\end{enumerate}
+
+
+\end{document}
