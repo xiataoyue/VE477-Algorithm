@@ -14,6 +14,6 @@
 
 From VE477 in 2021, it is encouraged to use `OCaml` to write the programs in labs and projects, which can win you a bonus. 
 
-In some of the labs, I have implemented the algorithms in `OCaml`. Although some of my implementations seems naïve and not so clear, it could pass `JOJ` for all the cases. 
+In some of the labs and projects, I have implemented the algorithms in `OCaml`. Although some of my implementations seems naïve and a little bit tedious, it could pass `JOJ` for all the cases. 
 
 Also, if it can help those who is visiting my repository, feel free to have a look. Hope that it will guide you somehow into `OCaml`.
