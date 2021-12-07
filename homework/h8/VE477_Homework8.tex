@@ -1,0 +1,254 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{blkarray}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[linesnumbered, ruled]{algorithm2e}
+\usepackage{tikz}
+\usepackage{diagbox}
+
+\geometry{left = 2.0cm, right = 2.0cm}
+
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwProg{Fn}{Function}{:}{end}
+
+\title{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=7cm, height=5cm]{AAA.png}
+    \end{figure}
+    VE477 Introduction to Algorithms\\ 
+    Homework 8}
+\author{Taoyue Xia, 518370910087}
+\date{2021/12/06}
+
+\begin{document}
+\maketitle
+
+\newpage
+
+\section*{Ex. 1 --- Fast multi-point evaluation and interpolation}
+\begin{center}
+    \textit{Part I --- Fast multi-point evaluation}
+\end{center}
+\begin{enumerate}
+    \item The binary tree is as follows,
+    
+          \begin{center}
+              \begin{tikzpicture}
+                \node{$U$}
+                child{ node {$u_0, \dots, u_{n/2-1}$}
+                    child{ node {$u_0,\dots,u_{n/4-1}$}
+                        child{ node {$\dots$} }
+                        child{ node {$\dots$} }
+                    }
+                    child[missing]{}
+                    child{ node {$u_{n/4},\dots,u_{n/2-1}$}
+                        child{ node {$\dots$} }
+                        child{ node {$\dots$} }
+                    }
+                }
+                child[missing]{}
+                child[missing]{}
+                child[missing]{}
+                child{ node {$u_{n/2}, \dots, u_{n-1}$}
+                    child{ node {$u_{n/2},\dots,u_{3n/4-1}$}
+                        child{ node {$\dots$} }
+                        child{ node {$\dots$} }
+                    }
+                    child[missing]{}
+                    child{ node {$u_{3n/4},\dots,u_{n-1}$}
+                        child{ node {$\dots$} }
+                        child{ node {$\dots$} }
+                    }
+                };
+              \end{tikzpicture}
+          \end{center}
+    \item Firstly, when $i = 0$, we can have
+          \[M_{0, j} = \prod_{l=0}^{2^0 - 1}m_{j2^0+l} = m_{j+0} = m_{j}\]
+          Then for general cases,
+          \begin{align*}
+              M_{i+1, j} &= \prod_{l=0}^{2^{i+1}-1}m_{j2^{i+1}+l}\\
+                         &= \prod_{l=0}^{2^i-1}m_{j2^{i+1}+l} \cdot \prod_{l=2^i}^{2^{i+1}-1}m_{j2^{i+1}+l}\\
+                         &= \prod_{l=0}^{2^i-1}m_{2j\cdot 2^i+l}\cdot \prod_{l=0}^{2^i-1}m_{2j\cdot 2^i + l + 2^i}\\
+                         &= \prod_{l=0}^{2^i-1}m_{(2j)\cdot 2^i+l}\cdot \prod_{l=0}^{2^i-1}m_{(2j+1)\cdot 2^i + l}\\
+                         &= M_{i, 2j}\cdot M_{i, 2j+1}
+          \end{align*}
+          With the above two deduction, we have proved that,
+          \[
+          \begin{cases}
+              M_{i+1, j} &= M_{i, 2j}M_{i, 2j+1}\\
+              M_{0, j}   &= m_j
+          \end{cases}
+          \]
+    \item $M_{0, j}$ can be seen as the $n$ leaves $m_0,\dots,m_{n-1}$, and $M_{i, j}$ is the $j_{th}$ elements at depth $i$. 
+          Also, For $M_{i+1, j}$, it has two children $M_{i, 2j}$ and $M_{i, 2j+1}$. Therefore, as the depth increases by 1, 
+          the number of nodes will shrink to half of the lower level nodes. So at the final depth $k$, 
+          the $n$-degree polynomial $M_{k, 0}$ would exist.
+    \item \begin{enumerate}[a)]
+        \item The algorithm is shown below,
+              
+              \begin{algorithm}[!htb]
+                  \caption{Subproduct Tree Build}
+                  \Input{$n = 2^k$ a power of 2, $U = \{u_0, \dots, u_{n-1}\}$}
+                  \Output{$M_{k, 0}$}
+                  \BlankLine
+                  \For{$j = 0$ to $n-1$}{
+                      $M_{0, j} \leftarrow x - u_j$\;
+                  }
+                  \For{$i = 1$ to $k$}{
+                      \For{$j = 0$ to $2^{k-i} - 1$}{
+                          $M_{i, j} \leftarrow M_{i-1, 2j}M_{i-1, 2j+1}$\;
+                      }
+                  }
+                  \KwRet{$M_{k, 0}$}\;
+              \end{algorithm}
+        \item The algorithm is shown below,
+              
+              \begin{algorithm}[!htb]
+                  \caption{Recursive Subproduct Tree Downward}
+                  \Input{$n = 2^k$, $P$ a polynomial of degree less than $n$, set $\{u_0, \dots, u_{n-1}\}$, $M_{i, j}$}
+                  \Output{$P(u_0), \dots, P(u_{n-1})$}
+                  \SetKwFunction{rd}{RecurseDown}
+                  \BlankLine
+                %   \tcc{All the $n$ $P$-values will be saved in an array}
+                  \Fn{\rd{$arr$, $M_{i, j}$}, $P$}{
+                      \If{$i == 0$}{
+                          $arr[2j] \leftarrow P$\;
+                          \KwRet\;
+                      }
+                      \rd{$arr$, $M_{i-1, 2j}$, $P \mod M_{i-1, 2j}$}\;
+                      \rd{$arr$, $M_{i-1, 2j}$, $P \mod M_{i-1, 2j+1}$}\;
+                  }
+                  $arr \leftarrow$ an empty array\;
+                  \rd{$arr$, $M_{k, 0}$, $P$}\;
+                  \KwRet{$arr$}\;
+                  \tcc{$arr$ contains $P_{u_0}, \dots, P(u_{n-1})$}
+              \end{algorithm}
+    \end{enumerate}
+    \item \begin{enumerate}[a)]
+        \item When $k = 0$, then the polynomial $M$ has degree 1, then $P$ can only be degree 0, which can be returned directly.
+          
+            Suppose that for $k = m\ (m \in \mathbb{N}^*)$, it returns $P(u_0), \dots, P(u_{2^m - 1})$. Then for $k = m + 1$, 
+            at level $m$, all the $M_{1, j}$ has degree 2, so it is possible for $P$ at that level to have degree 1, 
+            which does not give an answer. Therefore, we need to go down another level to $m+1$, 
+            so that we can have the values $P(u_0, \dots, P(u_{2^{m+1} - 1}))$. Proof done.
+        \item From the above algorithm, we can write the time needed in every level,
+              \[T(n) = 2T(n/2) + \mathcal{O}(M(n))\]
+              Therefore, according to the Master's Theory, the overall time complexity is $\mathcal{O}(M(n)\log n)$.
+    \end{enumerate} 
+\end{enumerate}
+
+\newpage
+\begin{center}
+    \textit{Part II --- Fast interpolation}
+\end{center}
+
+\begin{enumerate}
+    \item Knowing the points $(x_i, y_i)$, the Lagrange Interpolation method can be expressed as:
+          \[
+            \ell_i(x) = \prod_{\begin{smallmatrix} 0\leq m\leq k\\ m \neq i \end{smallmatrix}} \frac{x - x_m}{x_i - x_m} = 
+            \frac{(x - x_0)\cdots (x - x_{i-1})(x - x_{i+1})\cdots (x - x_k)}{(x_i - x_0)\cdots (x_i - x_{i-1})(x_i - x_{i+1})\cdots (x_i - x_k)}
+          \]
+          \[L(x) = \sum_{i=0}^k y_i \ell_i(x)\]
+          For our question, having $u_0, \dots, u_{n-1}$ as $x_i$ and $P(u_0), \dots, P(u_{n-1})$ as $y_i$, 
+          and $m = \prod_{i=0}^{n-1}(X - u_i)$, we can have
+          \[P = \sum_{i=0}^{n-1}(y_i\cdot \prod_{j\neq i}\frac{1}{u_i - u_j}\cdot \frac{m}{X - u_i})\]
+          Moreover, for each $u_i - u_j$ and $i \neq j$, we can find a $v_{i, j}$ in $R$ such that $(u_i - u_j)v_{i, j} = e$, 
+          the unit element.
+    \item Knowing that $m = \prod_{i=0}^{n-1}(x - u_i)$, denote $p_i = \prod_{j=0}^{i-1}(x - u_j)$ we can deduce that,
+          \[m^\prime = (\prod_{i=0}^{n-1}(x - u_i))^\prime = p_{n-1} + (x - u_{n-1})p_{n-1}^\prime\]
+          \[p_{n-1}^\prime = p_{n-2} + (x - u_{n-2})p_{n-2}^\prime\]
+          Then we can iterate this progress until it reaches $p_1$, and by expansion, the expression is 
+          \[m^\prime = \frac{m}{x - u_{n-1}} + \frac{m}{x - u_{n-2}} + \dots + \frac{m}{x - u_0} = \sum_{i=0}^{n-1}\frac{m}{x - u_i}\]
+          According to this equation, we can have
+          \[m^\prime(u_i) = \prod_{j\neq i}(u_i - u_j) = \frac{1}{s_i}\]
+          Since all the terms containing $x - u_i$ is 0.
+          Proof done.
+    \item The algorithm is as follows,
+    
+          \begin{algorithm}[!htb]
+              \caption{Interpolation for $P$}
+              \Input{$n = 2^k$, $u_0, \dots, u_{n-1}$, $M_{i, j}$, $P_{u_0}, \dots, P(u_{n-1})$}
+              \Output{$P$}
+              \SetKwFunction{IP}{Interpolation}
+              \BlankLine
+              \Fn{\IP{$P(u_i)$, $M_{i, j}$}}{
+                  \If{$i = 0$} {
+                      \KwRet{$P(u_j)$}\;
+                  }
+                  $l \leftarrow$ \IP{$P(u_i)$, $M_{i-1, 2j}$}\;
+                  $r \leftarrow$ \IP{$P(u_i)$, $M_{i-1, 2j+1}$}\;
+                  result $\leftarrow l\cdot M_{i-1, 2j} + r\cdot M_{i-1, 2j+1}$\;
+                  \KwRet{result}\;
+              }
+          \end{algorithm}
+          \newpage
+    \item Correctness and complexity
+          \begin{enumerate}[a)]
+              \item Same induction as in Part I 5(a).
+              \item For the deduction we have discussed in question 2, the time complexity of computing $m^\prime$ can be expressed as
+                    \[T(n) = 2T(n/2) + M(n)\]
+                    After calculating $m^\prime$, we just need to insert $u_i$ and take the reciprocal, we can get $s_i$. 
+                    Therefore, we can prove that computing $s_i$ in question 2 amounts to $\mathcal{O}(M(n)\log n)$ operations in $R$.
+              \item The time complexity for construct the subproduct tree is $\mathcal{O}(M(n)\log n)$, 
+                    and the time complexity of calculation for $s_i$ is also $\mathcal{O}(M(n)\log n)$. 
+                    After combining these two, we can perform the interpolation in linear time. 
+                    Therefore, the interpolation problem can be solved in $\mathcal{O}(M(n)\log n)$ ring operations.
+          \end{enumerate}
+    \item The possibility depends on the memory space needed for storing $M_{i, j}$.
+
+\end{enumerate}
+
+\newpage
+\section*{Ex. 2 --- Critical thinking}
+\begin{enumerate}
+    \item If $xy = e$, then $y = x^{-1}$, so $xy = yx = e$.
+          
+          If $xy \neq e$, replace $y$ with $x^{-1}y$ (since $\forall x, y\in G$, $x^{-1}y$ can form a bijection $G \rightarrow G$). 
+          Then we can have 
+          \begin{align*}
+              (xx^{-1}y)^2 &= (x^{-1}yx)^2\\
+              y^2          &= (x^{-1}yx)(x^{-1}yx)\\
+              y^2          &= x^{-1}y^2x\\
+              xy^2         &= yx^2
+          \end{align*}
+          Since it is mentioned in the stem that $\forall x \neq e,\ x^2 \neq e$, we can reduce $y^2$ and $x^2$ to $y$ and $x$, 
+          while keeping generality. Therefore, we can have $xy = yx$, which proves that $G$ is abelian.
+    \item \begin{itemize}
+        \item Since $S_2$ says that he cannot infer the two numbers, it means that the two numbers are not both prime, 
+              because only when the number can be factorized as two prime numbers can $S_2$ figure them out.
+        \item Then $S_1$ says that he knew $S_2$ cannot know the two numbers, 
+              it means that his $x+y$ are not any of the sum of two primes. Then all the even numbers can be ignored, 
+              according to the Goldbach's conjecture, 
+              all the even numbers smaller than $4\times 10^18$ can be represented as the sum of two primes. 
+              Also, the sum of $2$ and other odd primes can be ignored too. After the extraction, 
+              we only have the numbers $x+y = 11, 17, 23, 27, 29, 35, 37, 41, 47, 53$ remaining.
+        \item Then according to what $S_1$ has said, $S_2$ would know that $x+y$ must fall in these numbers, 
+              and the product $xy$ can only refer to one $x + y$.
+        \item Finally, we can know that the sum is $17$ and $x = 4, y = 13$ or $x = 13, y = 4$.
+    \end{itemize}
+
+\newpage
+\section*{Ex. 3 --- Beyond ve477}
+Swype was a virtual keyboard for touchscreen smartphones and tablets, 
+where the user enters words by sliding a finger or stylus from the first letter of a word to its last letter, 
+lifting only between words.
+
+It could be implemented in the following steps:
+\begin{itemize}
+    \item Firstly, we need to trace the path of user's finger, when it detects an obvious angle, 
+          the letter at the angle could be recorded.
+    \item Then it comes to the priority of the display sequence of words, from common to rare.
+    \item After that, we can record users' priority and habits to offer personalized word association.
+    \item Finally, it comes to the important function, the error correction. When it detects some strange word, 
+          which may be caused by mistyping, it can correct it probably using AI or other algorithms, and hint for the right one.
+\end{itemize}
+          
+\end{enumerate}
+
+\end{document}
